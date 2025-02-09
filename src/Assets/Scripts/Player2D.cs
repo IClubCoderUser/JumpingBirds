@@ -8,8 +8,10 @@ public class Player2D : MonoBehaviour
 {
     private Rigidbody2D _physics;
     private bool _isGround;
-    private float jump = 5;
+    public float jump = 6
+        ;
     private SpriteRenderer flip;
+    public float speed = 1;
 
 
     // Start is called before the                                                                                                                                                                              
@@ -37,7 +39,7 @@ public class Player2D : MonoBehaviour
 
 
         }
-        var vector = new Vector2(x: horizontal, y: _physics.velocity.y);
+        var vector = new Vector2(x: horizontal * speed, y: _physics.velocity.y);
         _physics.velocity = vector;
     }
     private void OnCollisionStay2D(Collision2D collision)
