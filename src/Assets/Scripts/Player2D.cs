@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
 public class Player2D : MonoBehaviour
@@ -10,6 +7,10 @@ public class Player2D : MonoBehaviour
     private bool _isGround;
     private float jump = 5;
     private SpriteRenderer flip;
+
+    public ParticleSystem DamagePS;
+
+    public int health;
 
 
     // Start is called before the                                                                                                                                                                              
@@ -37,8 +38,8 @@ public class Player2D : MonoBehaviour
 
 
         }
-        var vector = new Vector2(x: horizontal, y: _physics.velocity.y);
-        _physics.velocity = vector;
+        var vector = new Vector2(x: horizontal, y: _physics.linearVelocity.y);
+        _physics.linearVelocity = vector;
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
@@ -48,8 +49,17 @@ public class Player2D : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     { _isGround = false; }
 
+    [ContextMenu("damage")]
+    public void TestDamage()
+    {
+        Damage(1);
+    }
 
-
+    public void Damage(int Damage)
+    {
+        health -= Damage;
+        DamagePS.Play();
+    }
 
 }
 
