@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player2D : MonoBehaviour
 
@@ -12,6 +13,30 @@ public class Player2D : MonoBehaviour
         ;
     private SpriteRenderer flip;
     public float speed = 1;
+
+    private float _health = 3;
+
+    public void Damage()
+    {
+        _health--;
+        if (_health<=0)
+        {
+            SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+        }
+    }
+
+    public float Health
+    { 
+        get => _health;
+        set
+        {
+            _health = value;
+            if (_health <= 0)
+            {
+                SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+            }
+        }
+    }
 
 
     // Start is called before the                                                                                                                                                                              
