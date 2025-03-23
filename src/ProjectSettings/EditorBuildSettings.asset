@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ModularFirstPersonController/DemoScene/Demo.unity
     guid: 41862b117b84d014590bde9e5cdb0fe6
+  - enabled: 1
+    path: Assets/Prefabs/Scenes/SampleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

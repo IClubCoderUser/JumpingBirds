@@ -66,6 +66,16 @@ public class Player2D : MonoBehaviour
         }
         var vector = new Vector2(x: horizontal * speed, y: _physics.velocity.y);
         _physics.velocity = vector;
+
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (Target != null)
+            {
+                Debug.Log("ATTACK");
+                Target.Health--;
+            }
+        }
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
@@ -76,6 +86,23 @@ public class Player2D : MonoBehaviour
     { _isGround = false; }
 
 
+    private Enemy Target;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject != null)
+        {
+            var enemy = collision.gameObject.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                Debug.Log("ATTACH"); 
+                Target = enemy;
+            }
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Target = null;
+    }
 
 
 }
