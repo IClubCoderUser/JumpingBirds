@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,6 +8,11 @@ public class Platforms : MonoBehaviour
     public Vector3[] Target;
     private int _pointer;
 
+    private GameObject _pasage;
+
+    [SerializeField]
+    private Vector3 _oldCoords;
+
     public float _spped;
     // Start is called before the first frame update
     void Start()
@@ -15,11 +21,19 @@ public class Platforms : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         var targetPosition = Target[_pointer];
         var distance = Vector2.Distance(transform.position, targetPosition);
+
+        _oldCoords = transform.position;
         transform.position = Vector3.Lerp(transform.position, targetPosition, 1 / distance * _spped * Time.fixedDeltaTime);
+        
+        if (_pasage != null)
+        {
+            var dir = transform.position - _oldCoords;
+            _pasage.transform.position += dir;
+        }
 
         if (distance <= 0.1f)
         {
@@ -29,6 +43,16 @@ public class Platforms : MonoBehaviour
                 _pointer = 0;
             }
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        _pasage = collision.gameObject;
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        _pasage = null;
     }
 
     private void OnDrawGizmosSelected()
