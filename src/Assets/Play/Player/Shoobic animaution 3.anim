@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shoobic jump 2
+  m_Name: Shoobic animaution 3
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,13 +21,13 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -1703221056, guid: bb8363ed321407549b94a9041a1438e1, type: 3}
-    - time: 0.6166667
       value: {fileID: 49974619, guid: bb8363ed321407549b94a9041a1438e1, type: 3}
-    - time: 1.1833333
+    - time: 0.85
       value: {fileID: -1156735017, guid: bb8363ed321407549b94a9041a1438e1, type: 3}
-    - time: 1.8
-      value: {fileID: -1703221056, guid: bb8363ed321407549b94a9041a1438e1, type: 3}
+    - time: 1.6
+      value: {fileID: 1686710727, guid: bb8363ed321407549b94a9041a1438e1, type: 3}
+    - time: 2.25
+      value: {fileID: 49974619, guid: bb8363ed321407549b94a9041a1438e1, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -50,16 +50,16 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -1703221056, guid: bb8363ed321407549b94a9041a1438e1, type: 3}
     - {fileID: 49974619, guid: bb8363ed321407549b94a9041a1438e1, type: 3}
     - {fileID: -1156735017, guid: bb8363ed321407549b94a9041a1438e1, type: 3}
-    - {fileID: -1703221056, guid: bb8363ed321407549b94a9041a1438e1, type: 3}
+    - {fileID: 1686710727, guid: bb8363ed321407549b94a9041a1438e1, type: 3}
+    - {fileID: 49974619, guid: bb8363ed321407549b94a9041a1438e1, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.8166666
+    m_StopTime: 2.2666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

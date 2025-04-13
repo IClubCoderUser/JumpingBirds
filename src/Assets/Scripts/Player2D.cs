@@ -1,16 +1,42 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player2D : MonoBehaviour
 
 {
     private Rigidbody2D _physics;
     private bool _isGround;
-    private float jump = 5;
+    public float jump = 6
+        ;
     private SpriteRenderer flip;
+    public float speed = 1;
 
-    public ParticleSystem DamagePS;
+    private float _health = 3;
 
-    public int health;
+    public void Damage()
+    {
+        _health--;
+        if (_health<=0)
+        {
+            SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+        }
+    }
+
+    public float Health
+    { 
+        get => _health;
+        set
+        {
+            _health = value;
+            if (_health <= 0)
+            {
+                SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+            }
+        }
+    }
 
 
     // Start is called before the                                                                                                                                                                              
@@ -38,8 +64,18 @@ public class Player2D : MonoBehaviour
 
 
         }
-        var vector = new Vector2(x: horizontal, y: _physics.linearVelocity.y);
-        _physics.linearVelocity = vector;
+        var vector = new Vector2(x: horizontal * speed, y: _physics.velocity.y);
+        _physics.velocity = vector;
+
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (Target != null)
+            {
+                Debug.Log("ATTACK");
+                Target.Health--;
+            }
+        }
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
@@ -49,17 +85,25 @@ public class Player2D : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     { _isGround = false; }
 
-    [ContextMenu("damage")]
-    public void TestDamage()
+
+    private Enemy Target;
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Damage(1);
+        if (collision.gameObject != null)
+        {
+            var enemy = collision.gameObject.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                Debug.Log("ATTACH"); 
+                Target = enemy;
+            }
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Target = null;
     }
 
-    public void Damage(int Damage)
-    {
-        health -= Damage;
-        DamagePS.Play();
-    }
 
 }
 
