@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Follow : MonoBehaviour
+public class pipec : MonoBehaviour
 {
     public float speed = 5f;
     public Transform player;
@@ -10,10 +10,13 @@ public class Follow : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
-
     void FixedUpdate()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.position, speed);
+        var t = Vector3.Distance(transform.position, player.transform.position);
+        if (t>=1)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed);
+        }
     }
 }
 
