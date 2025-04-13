@@ -4,18 +4,26 @@ public class pipec : MonoBehaviour
 {
     public float speed = 5f;
     public Transform player;
+    public float _distanse = 1f;
 
     void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void FixedUpdate()
     {
-        var t = Vector3.Distance(transform.position, player.transform.position);
-        if (t>=1)
+        if (player == null)
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, speed);
+            Debug.Log($"Ты не выбрал игрока, плохой!!!. {gameObject.name}");
+            return;
+        }
+
+
+        var dir = player.transform.position - transform.position;
+        if (dir.magnitude>=_distanse)
+        {
+            transform.position += dir * Time.fixedDeltaTime * speed;
         }
     }
 }
