@@ -64,8 +64,8 @@ public class Player2D : MonoBehaviour
 
 
         }
-        var vector = new Vector2(x: horizontal * speed, y: _physics.velocity.y);
-        _physics.velocity = vector;
+        var vector = new Vector2(x: horizontal * speed, y: _physics.linearVelocity.y);
+        _physics.linearVelocity = vector;
 
 
         if (Input.GetMouseButtonDown(0))

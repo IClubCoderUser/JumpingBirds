@@ -9,8 +9,8 @@ public class damage : MonoBehaviour
     {
         var player = enemy.gameObject.GetComponent<Player2D>();
         if (player != null)
-        { 
-            player.Damage(damageValue);
+        {
+// player.Damage(damageValue);
         }
     }
 }
