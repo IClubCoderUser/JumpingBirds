@@ -21,7 +21,7 @@ public class pipec : MonoBehaviour
 
 
         var dir = player.transform.position - transform.position;
-        if (dir.magnitude>=_distanse)
+        if (dir.magnitude<=_distanse)
         {
             transform.position += dir * Time.fixedDeltaTime * speed;
         }
